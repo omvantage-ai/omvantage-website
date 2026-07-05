@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OmVantage AI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: #080c14;
+            color: #ffffff;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* AI STYLE LOGO & NAVBAR */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 5%;
+            background-color: rgba(8, 12, 20, 0.85);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(0, 242, 254, 0.15);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-logo-icon {
+            width: 35px;
+            height: 35px;
+            background: linear-gradient(135deg, #00f2fe, #4facfe);
+            border-radius: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 1.2rem;
+            box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 8px rgba(0, 242, 254, 0.4); }
+            100% { box-shadow: 0 0 18px rgba(0, 242, 254, 0.8); }
+        }
+
+        .logo-text {
+            font-size: 1.3rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            background: linear-gradient(to right, #ffffff, #00f2fe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+        }
+
+        nav ul li { margin-left: 22px; }
+
+        nav ul li a {
+            color: #94a3b8;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s, text-shadow 0.3s;
+            font-size: 0.95rem;
+        }
+
+        nav ul li a:hover {
+            color: #00f2fe;
+            text-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
+        }
+
+        /* HERO SECTION */
+        .hero {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 20px;
+            min-height: 65vh;
+        }
+
+        .animated-title {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 35px; 
+            color: #fff;
+        }
+
+        .typing-text {
+            color: #00f2fe;
+            border-right: 3px solid #00f2fe;
+            white-space: nowrap;
+            animation: typing 3.5s steps(30, end) infinite, blink 0.75s step-end infinite;
+            display: inline-block;
+            overflow: hidden;
+            max-width: 100%;
+        }
+
+        @keyframes typing {
+            0%, 90%, 100% { width: 0; }
+            30%, 80% { width: 100%; }
+        }
+
+        @keyframes blink {
+            from, to { border-color: transparent }
+            50% { border-color: #00f2fe; }
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            max-width: 650px;
+            margin-bottom: 40px;
+        }
+
+        /* ABOUT US SECTION STYLES */
+        .about-section {
+            padding: 80px 5%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .about-section h2 {
+            font-size: 2.3rem;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffffff, #94a3b8);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .about-content {
+            max-width: 700px;
+            margin: 0 auto;
+            background: linear-gradient(145deg, rgba(0, 242, 254, 0.03), rgba(255, 255, 255, 0.02));
+            border: 1px solid rgba(0, 242, 254, 0.1);
+            padding: 40px 30px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .about-content p {
+            font-size: 1.2rem;
+            color: #e2e8f0;
+            margin-bottom: 15px;
+        }
+
+        .about-content span {
+            color: #00f2fe;
+            font-weight: 600;
+        }
+
+        /* BUTTONS */
+        .btn {
+            display: inline-block;
+            padding: 14px 40px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #080c14;
+            background: linear-gradient(45deg, #00f2fe, #4facfe);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .btn:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 6px 25px rgba(0, 242, 254, 0.6);
+        }
+
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.25), transparent);
+            margin: 10px auto;
+            width: 85%;
+        }
+
+        /* ADVANCED SERVICES CARDS */
+        .services-section {
+            padding: 80px 5%;
+            text-align: center;
+        }
+
+        .services-section h2 {
+            font-size: 2.3rem;
+            margin-bottom: 45px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+
+        .service-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.05));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 35px 25px;
+            border-radius: 20px;
+            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s, border-color 0.4s;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 242, 254, 0.5);
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.15);
+        }
+
+        .service-icon {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            display: block;
+            filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.3));
+        }
+
+        .service-card h3 {
+            font-size: 1.25rem;
+            font-weight: 600;
+            color: #f8fafc;
+        }
+
+        /* CONTACT SECTION STYLES */
+        .contact-section {
+            padding: 80px 5%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.02);
+            border-top: 1px solid rgba(0, 242, 254, 0.1);
+        }
+
+        .contact-section h2 {
+            font-size: 2.3rem;
+            margin-bottom: 30px;
+            color: #00f2fe;
+        }
+
+        .contact-info {
+            max-width: 500px;
+            margin: 0 auto;
+            background: #111827;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+        }
+
+        .contact-info p {
+            font-size: 1.1rem;
+            margin-bottom: 15px;
+            color: #e2e8f0;
+        }
+
+        .contact-info a {
+            color: #00f2fe;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* POPUP FORM (MODAL) */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(4, 6, 10, 0.8);
+            backdrop-filter: blur(8px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-box {
+            background: #0f172a;
+            border: 1px solid rgba(0, 242, 254, 0.3);
+            padding: 35px;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 15px 40px rgba(0, 242, 254, 0.2);
+            transform: scale(0.85);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .modal-overlay.active .modal-box {
+            transform: scale(1);
+        }
+
+        .modal-box h3 {
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            background: linear-gradient(45deg, #00f2fe, #4facfe);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .modal-box p {
+            font-size: 0.9rem;
+            color: #94a3b8;
+            margin-bottom: 25px;
+        }
+
+        .modal-form input, .modal-form textarea {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.95rem;
+            outline: none;
+            transition: border-color 0.3s;
+        }
+
+        .modal-form input:focus, .modal-form textarea:focus {
+            border-color: #00f2fe;
+            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 1.6rem;
+            color: #64748b;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+
+        .close-btn:hover { color: #ff4a4a; }
+
+        footer {
+            text-align: center;
+            padding: 25px 20px;
+            background-color: #05080f;
+            color: #64748b;
+            font-size: 0.9rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: column; gap: 15px; padding: 20px 2%; }
+            nav ul li { margin: 0 12px; }
+            .animated-title { font-size: 2.2rem; }
+            .hero p { font-size: 1rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <header>
+        <div class="logo-container">
+            <div class="ai-logo-icon">🤖</div>
+            <div class="logo-text">OmVantage AI</div>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1 class="animated-title">Welcome to <br><span class="typing-text">OmVantage AI</span></h1>
+        <p>We Build Next-Generation AI Apps, Immersive Games & Modern Websites.</p>
+        <button class="btn" id="hireMeBtn">Hire Us</button>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- About Section -->
+    <section class="about-section" id="about">
+        <h2>About Us</h2>
+        <div class="about-content">
+            <p>Hi, I am <span>Omprakash</span>.</p>
+            <p>I am dedicated to turning your innovative ideas into powerful, high-performance digital solutions. Let's create something extraordinary together.</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Services Section -->
+    <section class="services-section" id="services">
+        <h2>Our Services</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <span class="service-icon">🧠</span>
+                <h3>AI Apps</h3>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">🎮</span>
+                <h3>Game Development</h3>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">💻</span>
+                <h3>Website Development</h3>
+            </div>
+            <div class="service-card">
+                <span class="service-icon">📱</span>
+                <h3>Android Apps</h3>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <h2>Contact Us</h2>
+        <div class="contact-info">
+            <p>📞 Mobile: <a href="tel:+918878906267">+91 8878906267</a></p>
+            <p>📧 Email: <a href="mailto:omahirwar81@gmail.com">omahirwar81@gmail.com</a></p>
+            <p>📍 Location: Makhan Nagar, Madhya Pradesh, India</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>© 2026 OmVantage AI. All Rights Reserved.</p>
+    </footer>
+
+    <!-- Popup Modal -->
+    <div class="modal-overlay" id="modalOverlay">
+        <div class="modal-box">
+            <span class="close-btn" id="closeModalBtn">&times;</span>
+            <h3>Contact OmVantage AI</h3>
+            <p>अपनी ज़रूरत नीचे लिखें, हम आपसे जल्द संपर्क करेंगे।</p>
+            <form class="modal-form" onsubmit="event.preventDefault(); alert('संदेश सफलतापूर्वक भेजा गया!'); document.getElementById('modalOverlay').classList.remove('active');">
+                <input type="text" placeholder="आपका नाम (Your Name)" required>
+                <input type="email" placeholder="ईमेल या फ़ोन नंबर" required>
+                <textarea rows="4" placeholder="आप क्या बनवाना चाहते हैं? (Message)" required></textarea>
+                <button type="submit" class="btn" style="width: 100%; border-radius: 10px;">Submit Message</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- JavaScript For Popup -->
+    <script>
+        const hireMeBtn = document.getElementById('hireMeBtn');
+        const modalOverlay = document.getElementById('modalOverlay');
+        const closeModalBtn = document.getElementById('closeModalBtn');
+
+        hireMeBtn.addEventListener('click', () => {
+            modalOverlay.classList.add('active');
+        });
+
+        closeModalBtn.addEventListener('click', () => {
+            modalOverlay.classList.remove('active');
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === modalOverlay) {
+                modalOverlay.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>
