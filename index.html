@@ -268,7 +268,7 @@
 
         .contact-info p {
             font-size: 1.1rem;
-            margin-bottom: 15px;
+            margin-bottom: 20px;
             color: #e2e8f0;
         }
 
@@ -280,6 +280,28 @@
 
         .contact-info a:hover {
             text-decoration: underline;
+        }
+
+        /* WHATSAPP BUTTON STYLE */
+        .whatsapp-btn {
+            display: inline-block;
+            background: #25D366;
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+        }
+
+        .whatsapp-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
+            text-decoration: none !important;
+            color: white !important;
         }
 
         /* POPUP FORM (MODAL) */
@@ -448,9 +470,13 @@
     <section class="contact-section" id="contact">
         <h2>Contact Us</h2>
         <div class="contact-info">
-            <p>📞 Mobile: <a href="tel:+918878906267">+91 8878906267</a></p>
+            <p>📞 Mobile: <a href="tel:+918878906237">+91 8878906237</a></p>
             <p>📧 Email: <a href="mailto:omahirwar81@gmail.com">omahirwar81@gmail.com</a></p>
             <p>📍 Location: Makhan Nagar, Madhya Pradesh, India</p>
+            <!-- WhatsApp Chat Button -->
+            <a href="https://wa.me/918878906237" class="whatsapp-btn" target="_blank">
+                💬 Chat on WhatsApp
+            </a>
         </div>
     </section>
 
@@ -497,5 +523,3 @@
 
 </body>
 </html>
-
-   
