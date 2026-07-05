@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmVantage AI</title>
+    <title>OmVantage AI | Next-Gen Tech Solutions</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
     <style>
         * {
@@ -20,7 +20,6 @@
             overflow-x: hidden;
         }
 
-        /* AI STYLE LOGO & NAVBAR */
         header {
             display: flex;
             justify-content: space-between;
@@ -78,7 +77,7 @@
             color: #94a3b8;
             text-decoration: none;
             font-weight: 500;
-            transition: color 0.3s, text-shadow 0.3s;
+            transition: color 0.3s;
             font-size: 0.95rem;
         }
 
@@ -87,21 +86,20 @@
             text-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
         }
 
-        /* HERO SECTION */
         .hero {
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
             text-align: center;
-            padding: 120px 20px;
-            min-height: 65vh;
+            padding: 100px 20px;
+            min-height: 60vh;
         }
 
         .animated-title {
             font-size: 3rem;
             font-weight: 700;
-            margin-bottom: 35px; 
+            margin-bottom: 25px; 
             color: #fff;
         }
 
@@ -132,17 +130,15 @@
             margin-bottom: 40px;
         }
 
-        /* ABOUT US SECTION STYLES */
         .about-section {
-            padding: 80px 5%;
+            padding: 60px 5%;
             text-align: center;
-            background: rgba(255, 255, 255, 0.01);
         }
 
         .about-section h2 {
             font-size: 2.3rem;
             margin-bottom: 20px;
-            background: linear-gradient(45deg, #ffffff, #94a3b8);
+            background: linear-gradient(45deg, #ffffff, #00f2fe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
@@ -152,15 +148,14 @@
             margin: 0 auto;
             background: linear-gradient(145deg, rgba(0, 242, 254, 0.03), rgba(255, 255, 255, 0.02));
             border: 1px solid rgba(0, 242, 254, 0.1);
-            padding: 40px 30px;
+            padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
         }
 
         .about-content p {
-            font-size: 1.2rem;
+            font-size: 1.15rem;
             color: #e2e8f0;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
         }
 
         .about-content span {
@@ -168,36 +163,66 @@
             font-weight: 600;
         }
 
-        /* BUTTONS */
-        .btn {
+        /* PORTFOLIO / OUR WORK SECTION */
+        .portfolio-section {
+            padding: 60px 5%;
+            text-align: center;
+            background: rgba(255, 255, 255, 0.01);
+        }
+
+        .portfolio-section h2 {
+            font-size: 2.3rem;
+            margin-bottom: 40px;
+            color: #fff;
+        }
+
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .portfolio-card {
+            background: #0f172a;
+            border: 1px solid rgba(0, 242, 254, 0.15);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: left;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+        }
+
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            border-color: #00f2fe;
+        }
+
+        .portfolio-badge {
             display: inline-block;
-            padding: 14px 40px;
-            font-size: 1rem;
-            font-weight: 600;
-            color: #080c14;
-            background: linear-gradient(45deg, #00f2fe, #4facfe);
-            border: none;
+            background: rgba(0, 242, 254, 0.1);
+            color: #00f2fe;
+            padding: 4px 12px;
             border-radius: 50px;
-            cursor: pointer;
-            box-shadow: 0 4px 20px rgba(0, 242, 254, 0.3);
-            transition: transform 0.3s, box-shadow 0.3s;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
         }
 
-        .btn:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 6px 25px rgba(0, 242, 254, 0.6);
+        .portfolio-card h3 {
+            font-size: 1.3rem;
+            color: #fff;
+            margin-bottom: 10px;
         }
 
-        .divider {
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.25), transparent);
-            margin: 10px auto;
-            width: 85%;
+        .portfolio-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
         }
 
-        /* ADVANCED SERVICES CARDS */
         .services-section {
-            padding: 80px 5%;
+            padding: 60px 5%;
             text-align: center;
         }
 
@@ -208,8 +233,8 @@
 
         .services-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
             max-width: 1150px;
             margin: 0 auto;
         }
@@ -217,35 +242,29 @@
         .service-card {
             background: linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.05));
             border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 35px 25px;
+            padding: 30px 20px;
             border-radius: 20px;
-            transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.4s, border-color 0.4s;
-            position: relative;
-            overflow: hidden;
+            transition: transform 0.3s, border-color 0.3s;
         }
 
         .service-card:hover {
-            transform: translateY(-8px);
+            transform: translateY(-5px);
             border-color: rgba(0, 242, 254, 0.5);
-            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.15);
         }
 
         .service-icon {
-            font-size: 2.8rem;
-            margin-bottom: 20px;
+            font-size: 2.5rem;
+            margin-bottom: 15px;
             display: block;
-            filter: drop-shadow(0 0 10px rgba(0, 242, 254, 0.3));
         }
 
         .service-card h3 {
-            font-size: 1.25rem;
-            font-weight: 600;
+            font-size: 1.2rem;
             color: #f8fafc;
         }
 
-        /* CONTACT SECTION STYLES */
         .contact-section {
-            padding: 80px 5%;
+            padding: 60px 5%;
             text-align: center;
             background: rgba(255, 255, 255, 0.02);
             border-top: 1px solid rgba(0, 242, 254, 0.1);
@@ -263,12 +282,12 @@
             background: #111827;
             padding: 30px;
             border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.2);
+            box-shadow: 0 0 20px rgba(0, 242, 254, 0.1);
         }
 
         .contact-info p {
-            font-size: 1.1rem;
-            margin-bottom: 20px;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
             color: #e2e8f0;
         }
 
@@ -278,113 +297,51 @@
             font-weight: 600;
         }
 
-        .contact-info a:hover {
-            text-decoration: underline;
+        .btn {
+            display: inline-block;
+            padding: 12px 35px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #080c14;
+            background: linear-gradient(45deg, #00f2fe, #4facfe);
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
+            transition: transform 0.3s;
         }
 
-        /* WHATSAPP BUTTON STYLE */
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
+        }
+
         .whatsapp-btn {
             display: inline-block;
             background: #25D366;
             color: white;
-            padding: 12px 25px;
+            padding: 12px 30px;
             border-radius: 30px;
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
-            margin-top: 10px;
-            transition: transform 0.3s, box-shadow 0.3s;
+            margin-top: 15px;
             box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.3s;
         }
 
         .whatsapp-btn:hover {
             transform: translateY(-2px);
             box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-            text-decoration: none !important;
-            color: white !important;
+            color: white;
         }
 
-        /* POPUP FORM (MODAL) */
-        .modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(4, 6, 10, 0.8);
-            backdrop-filter: blur(8px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
+        .divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.15), transparent);
+            margin: 20px auto;
+            width: 85%;
         }
-
-        .modal-box {
-            background: #0f172a;
-            border: 1px solid rgba(0, 242, 254, 0.3);
-            padding: 35px;
-            border-radius: 24px;
-            width: 90%;
-            max-width: 420px;
-            text-align: center;
-            box-shadow: 0 15px 40px rgba(0, 242, 254, 0.2);
-            transform: scale(0.85);
-            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            position: relative;
-        }
-
-        .modal-overlay.active {
-            opacity: 1;
-            pointer-events: auto;
-        }
-
-        .modal-overlay.active .modal-box {
-            transform: scale(1);
-        }
-
-        .modal-box h3 {
-            font-size: 1.6rem;
-            margin-bottom: 8px;
-            background: linear-gradient(45deg, #00f2fe, #4facfe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .modal-box p {
-            font-size: 0.9rem;
-            color: #94a3b8;
-            margin-bottom: 25px;
-        }
-
-        .modal-form input, .modal-form textarea {
-            width: 100%;
-            padding: 14px;
-            margin-bottom: 16px;
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            color: #fff;
-            font-size: 0.95rem;
-            outline: none;
-            transition: border-color 0.3s;
-        }
-
-        .modal-form input:focus, .modal-form textarea:focus {
-            border-color: #00f2fe;
-            box-shadow: 0 0 10px rgba(0, 242, 254, 0.2);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: 15px;
-            right: 20px;
-            font-size: 1.6rem;
-            color: #64748b;
-            cursor: pointer;
-            transition: color 0.2s;
-        }
-
-        .close-btn:hover { color: #ff4a4a; }
 
         footer {
             text-align: center;
@@ -397,9 +354,8 @@
 
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 15px; padding: 20px 2%; }
-            nav ul li { margin: 0 12px; }
+            nav ul li { margin: 0 10px; }
             .animated-title { font-size: 2.2rem; }
-            .hero p { font-size: 1rem; }
         }
     </style>
 </head>
@@ -415,6 +371,7 @@
             <ul>
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#portfolio">Our Work</a></li>
                 <li><a href="#services">Services</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
@@ -424,8 +381,8 @@
     <!-- Hero Section -->
     <section class="hero" id="home">
         <h1 class="animated-title">Welcome to <br><span class="typing-text">OmVantage AI</span></h1>
-        <p>We Build Next-Generation AI Apps, Immersive Games & Modern Websites.</p>
-        <button class="btn" id="hireMeBtn">Hire Us</button>
+        <p>हम आपके बिजनेस को डिजिटल और ऑटोमैटिक बनाने के लिए ऐप्स, ऑटोमेशन टूल्स और मॉडर्न वेबसाइट्स बनाते हैं।</p>
+        <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Get Started</button>
     </section>
 
     <div class="divider"></div>
@@ -434,8 +391,32 @@
     <section class="about-section" id="about">
         <h2>About Us</h2>
         <div class="about-content">
-            <p>Hi, I am <span>Omprakash</span>.</p>
-            <p>I am dedicated to turning your innovative ideas into powerful, high-performance digital solutions. Let's create something extraordinary together.</p>
+            <p>नमस्ते, मैं हूँ <span>Omprakash Ahirwar</span>।</p>
+            <p>मैं एक स्वतंत्र डेवलपर हूँ जो आपके रोज़मर्रा के बिज़नेस टास्क और सोशल मीडिया को AI तथा सॉफ्टवेयर की मदद से ऑटोमैटिक करने में माहिर हूँ।</p>
+        </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio-section" id="portfolio">
+        <h2>Our Live Projects (पोर्टफोलियो)</h2>
+        <div class="portfolio-grid">
+            
+            <!-- Project 1 -->
+            <div class="portfolio-card">
+                <span class="portfolio-badge">Android App & Billing</span>
+                <h3>Smart Bill Custom App</h3>
+                <p>रिटेल गारमेंट्स और कपड़े की दुकानों के लिए एक कस्टम डिजिटल बिलिंग कैलकुलेटर ऐप, जो बिना किसी झंझट के तुरंत सटीक बिल जनरेट करता है और मैन्युअल काम को पूरी तरह ख़त्म करता है।</p>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="portfolio-card">
+                <span class="portfolio-badge">Social Media Automation</span>
+                <h3>FB & Insta Auto-Responder</h3>
+                <p>फेसबुक मैसेंजर और इंस्टाग्राम पर आने वाली लीड्स को ऑटोमैटिक कस्टमाइज्ड रिप्लाई भेजने और सीधे WhatsApp पर सिंक करने का एडवांस ऑटोमेशन सिस्टम, जो ग्राहकों को 24/7 तुरंत जवाब देता है।</p>
+            </div>
+
         </div>
     </section>
 
@@ -446,20 +427,20 @@
         <h2>Our Services</h2>
         <div class="services-grid">
             <div class="service-card">
-                <span class="service-icon">🧠</span>
-                <h3>AI Apps</h3>
+                <span class="service-icon">🤖</span>
+                <h3>Social Automation</h3>
             </div>
             <div class="service-card">
-                <span class="service-icon">🎮</span>
-                <h3>Game Development</h3>
+                <span class="service-icon">📊</span>
+                <h3>Custom Billing Apps</h3>
             </div>
             <div class="service-card">
                 <span class="service-icon">💻</span>
-                <h3>Website Development</h3>
+                <h3>Business Websites</h3>
             </div>
             <div class="service-card">
                 <span class="service-icon">📱</span>
-                <h3>Android Apps</h3>
+                <h3>Android Tools</h3>
             </div>
         </div>
     </section>
@@ -470,11 +451,13 @@
     <section class="contact-section" id="contact">
         <h2>Contact Us</h2>
         <div class="contact-info">
+            <p>क्या आप भी अपने बिजनेस को ऑनलाइन और ऑटोमैटिक बनाना चाहते हैं? हमसे अभी बात करें।</p>
             <p>📞 Mobile: <a href="tel:+918878906237">+91 8878906237</a></p>
             <p>📧 Email: <a href="mailto:omahirwar81@gmail.com">omahirwar81@gmail.com</a></p>
             <p>📍 Location: Makhan Nagar, Madhya Pradesh, India</p>
+            
             <!-- WhatsApp Chat Button -->
-            <a href="https://wa.me/918878906237" class="whatsapp-btn" target="_blank">
+            <a href="https://wa.me/918878906237?text=Hello%20OmVantage%20AI,%20I%20want%20to%20know%20more%20about%20your%20services." class="whatsapp-btn" target="_blank">
                 💬 Chat on WhatsApp
             </a>
         </div>
@@ -484,42 +467,6 @@
     <footer>
         <p>© 2026 OmVantage AI. All Rights Reserved.</p>
     </footer>
-
-    <!-- Popup Modal -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal-box">
-            <span class="close-btn" id="closeModalBtn">&times;</span>
-            <h3>Contact OmVantage AI</h3>
-            <p>अपनी ज़रूरत नीचे लिखें, हम आपसे जल्द संपर्क करेंगे।</p>
-            <form class="modal-form" onsubmit="event.preventDefault(); alert('संदेश सफलतापूर्वक भेजा गया!'); document.getElementById('modalOverlay').classList.remove('active');">
-                <input type="text" placeholder="आपका नाम (Your Name)" required>
-                <input type="email" placeholder="ईमेल या फ़ोन नंबर" required>
-                <textarea rows="4" placeholder="आप क्या बनवाना चाहते हैं? (Message)" required></textarea>
-                <button type="submit" class="btn" style="width: 100%; border-radius: 10px;">Submit Message</button>
-            </form>
-        </div>
-    </div>
-
-    <!-- JavaScript For Popup -->
-    <script>
-        const hireMeBtn = document.getElementById('hireMeBtn');
-        const modalOverlay = document.getElementById('modalOverlay');
-        const closeModalBtn = document.getElementById('closeModalBtn');
-
-        hireMeBtn.addEventListener('click', () => {
-            modalOverlay.classList.add('active');
-        });
-
-        closeModalBtn.addEventListener('click', () => {
-            modalOverlay.classList.remove('active');
-        });
-
-        window.addEventListener('click', (e) => {
-            if (e.target === modalOverlay) {
-                modalOverlay.classList.remove('active');
-            }
-        });
-    </script>
 
 </body>
 </html>
