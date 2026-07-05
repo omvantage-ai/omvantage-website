@@ -6,7 +6,6 @@
     <title>OmVantage AI | Next-Gen Tech Agency</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     
-    <!-- Scroll Animation Library (AOS) -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     
     <style>
@@ -204,7 +203,7 @@
             border-radius: 2px;
         }
 
-        /* CUSTOM SERVICES CARDS CSS (UPDATED) */
+        /* SERVICES CARDS SECTION */
         .services-section { padding: 80px 5%; }
         
         .cards {
@@ -332,7 +331,7 @@
             width: 85%;
         }
 
-        /* CUSTOM PROFESSIONAL FOOTER (UPDATED) */
+        /* FOOTER SECTION */
         footer {
             text-align: center;
             padding: 30px;
@@ -347,27 +346,24 @@
         }
         .footer-subtext {
             color: #94a3b8;
-            font-size: 0.85rem !important;
-            margin-top: 10px !important;
+            font-size: 0.85rem;
+            margin-top: 10px;
         }
 
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 15px; padding: 20px 2%; }
             nav ul li { margin: 0 10px; }
             .animated-title { font-size: 2.2rem; }
-            .cards { justify-content: center; }
         }
     </style>
 </head>
 <body>
 
-    <!-- LOADING ANIMATION -->
     <div id="loader">
         <div class="spinner"></div>
         <p>OmVantage AI Loading...</p>
     </div>
 
-    <!-- Navigation Bar -->
     <header>
         <div class="logo-container">
             <div class="ai-logo-icon">🤖</div>
@@ -384,7 +380,6 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
     <section class="hero" id="home">
         <h1 class="animated-title" data-aos="fade-up">Welcome to <br><span class="typing-text">OmVantage AI</span></h1>
         <p data-aos="fade-up" data-aos-delay="200">हम आपके बिजनेस को स्मार्ट और ऑटोमैटिक बनाने के लिए कस्टम ऐप्स, सोशल मीडिया ऑटोमेशन टूल्स और रिस्पॉन्सिव वेबसाइट्स तैयार करते हैं।</p>
@@ -393,7 +388,6 @@
 
     <div class="divider"></div>
 
-    <!-- About Section -->
     <section class="about-section" id="about">
         <h2 data-aos="fade-up">About Us</h2>
         <div class="about-content" data-aos="zoom-in">
@@ -404,7 +398,6 @@
 
     <div class="divider"></div>
 
-    <!-- CUSTOM SERVICES CARDS SECTION (UPDATED) -->
     <section class="services-section" id="services">
         <h2 class="section-title" data-aos="fade-up">Our Services</h2>
         <div class="cards">
@@ -438,12 +431,10 @@
 
     <div class="divider"></div>
 
-    <!-- PORTFOLIO SECTION -->
     <section class="projects-section" id="projects">
         <h2 class="section-title" data-aos="fade-up">Our Portfolio</h2>
         <div class="projects-grid">
             
-            <!-- Project 1 -->
             <div class="project-card" data-aos="fade-right">
                 <div class="project-info">
                     <span class="project-tag">Android App & Retail</span>
@@ -452,16 +443,14 @@
                 </div>
             </div>
 
-            <!-- Project 2 -->
             <div class="project-card" data-aos="fade-left">
                 <div class="project-info">
                     <span class="project-tag">Social Media Automation</span>
                     <h3>FB & Insta Lead Auto-Responder</h3>
-                    <p>सोशल मीडिया पर 24/7 एक्टिव रहने वाला ऑटोमेशन系统। कस्टमर का मैसेज आते ही यह सिस्टम ऑटो-रिप्लाई करके ग्राहकों को सीधे आपके आधिकारिक WhatsApp से सिंक कर देता है।</p>
+                    <p>सोशल मीडिया पर 24/7 एक्टिव रहने वाला ऑटोमेशन सिस्टम। कस्टमर का मैसेज आते ही यह सिस्टम ऑटो-रिप्लाई करके ग्राहकों को सीधे आपके आधिकारिक WhatsApp से सिंक कर देता है।</p>
                 </div>
             </div>
 
-            <!-- Project 3 -->
             <div class="project-card" data-aos="fade-right" data-aos-delay="100">
                 <div class="project-info">
                     <span class="project-tag">Game & Entertainment</span>
@@ -475,7 +464,6 @@
 
     <div class="divider"></div>
 
-    <!-- Contact & WhatsApp Section -->
     <section class="contact-section" id="contact">
         <h2 class="section-title" data-aos="fade-up">Let's Work Together</h2>
         <div class="contact-info" data-aos="zoom-in">
@@ -484,30 +472,25 @@
             <p>📧 Email: <a href="mailto:omahirwar81@gmail.com" style="color:#00e5ff;">omahirwar81@gmail.com</a></p>
             <p>📍 Location: Makhan Nagar, MP, India</p>
             
-            <!-- WhatsApp Button -->
             <a href="https://wa.me/918878906237?text=Hello%20OmVantage%20AI,%20I%20checked%20your%20website%20and%20want%20to%20discuss%20a%20project." class="whatsapp-btn" target="_blank">
                 💬 Chat on WhatsApp
             </a>
         </div>
     </section>
 
-    <!-- CUSTOM PROFESSIONAL FOOTER (UPDATED) -->
     <footer>
         <p>© 2026 OmVantage AI. All Rights Reserved.</p>
         <p>Founder: Omprakash Ahirwar</p>
         <p class="footer-subtext">Designed with ❤️ for Next-Gen Solutions</p>
     </footer>
 
-    <!-- SCROLL ANIMATION SCRIPT (AOS) -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
-        // Initialize Scroll Animations
         AOS.init({
             duration: 800,
             once: true
         });
 
-        // Hide Loading Animation once page loads fully
         window.addEventListener('load', () => {
             const loader = document.getElementById('loader');
             loader.style.opacity = '0';
@@ -519,3 +502,4 @@
 
 </body>
 </html>
+
