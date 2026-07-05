@@ -3,14 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OmVantage AI | Next-Gen Tech Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <title>OmVantage AI | Next-Gen Tech Agency</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Scroll Animation Library (AOS) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -20,6 +25,38 @@
             overflow-x: hidden;
         }
 
+        /* 5. LOADING ANIMATION STYLES */
+        #loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #05080f;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, pointer-events 0.5s;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid rgba(0, 242, 254, 0.1);
+            border-top: 5px solid #00f2fe;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        #loader p {
+            margin-top: 15px;
+            color: #00f2fe;
+            font-weight: 500;
+            letter-spacing: 1px;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* NAVBAR */
         header {
             display: flex;
             justify-content: space-between;
@@ -49,30 +86,18 @@
             align-items: center;
             font-size: 1.2rem;
             box-shadow: 0 0 15px rgba(0, 242, 254, 0.6);
-            animation: pulse 2s infinite alternate;
-        }
-
-        @keyframes pulse {
-            0% { box-shadow: 0 0 8px rgba(0, 242, 254, 0.4); }
-            100% { box-shadow: 0 0 18px rgba(0, 242, 254, 0.8); }
         }
 
         .logo-text {
             font-size: 1.3rem;
             font-weight: 700;
-            letter-spacing: 0.5px;
             background: linear-gradient(to right, #ffffff, #00f2fe);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-
+        nav ul { display: flex; list-style: none; }
         nav ul li { margin-left: 22px; }
-
         nav ul li a {
             color: #94a3b8;
             text-decoration: none;
@@ -80,12 +105,12 @@
             transition: color 0.3s;
             font-size: 0.95rem;
         }
-
         nav ul li a:hover {
             color: #00f2fe;
             text-shadow: 0 0 8px rgba(0, 242, 254, 0.5);
         }
 
+        /* HERO SECTION */
         .hero {
             display: flex;
             flex-direction: column;
@@ -93,14 +118,13 @@
             justify-content: center;
             text-align: center;
             padding: 100px 20px;
-            min-height: 60vh;
+            min-height: 65vh;
         }
 
         .animated-title {
             font-size: 3rem;
             font-weight: 700;
             margin-bottom: 25px; 
-            color: #fff;
         }
 
         .typing-text {
@@ -124,82 +148,88 @@
         }
 
         .hero p {
-            font-size: 1.25rem;
+            font-size: 1.2rem;
             color: #94a3b8;
-            max-width: 650px;
-            margin-bottom: 40px;
-        }
-
-        .about-section {
-            padding: 60px 5%;
-            text-align: center;
-        }
-
-        .about-section h2 {
-            font-size: 2.3rem;
-            margin-bottom: 20px;
-            background: linear-gradient(45deg, #ffffff, #00f2fe);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .about-content {
             max-width: 700px;
-            margin: 0 auto;
-            background: linear-gradient(145deg, rgba(0, 242, 254, 0.03), rgba(255, 255, 255, 0.02));
-            border: 1px solid rgba(0, 242, 254, 0.1);
-            padding: 30px;
-            border-radius: 20px;
-        }
-
-        .about-content p {
-            font-size: 1.15rem;
-            color: #e2e8f0;
-            margin-bottom: 10px;
-        }
-
-        .about-content span {
-            color: #00f2fe;
-            font-weight: 600;
-        }
-
-        /* PORTFOLIO / OUR WORK SECTION */
-        .portfolio-section {
-            padding: 60px 5%;
-            text-align: center;
-            background: rgba(255, 255, 255, 0.01);
-        }
-
-        .portfolio-section h2 {
-            font-size: 2.3rem;
             margin-bottom: 40px;
+        }
+
+        .section-title {
+            font-size: 2.3rem;
+            text-align: center;
+            margin-bottom: 45px;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background: #00f2fe;
+            margin: 10px auto 0;
+            border-radius: 2px;
+        }
+
+        /* 1. SERVICES CARDS SECTION */
+        .services-section { padding: 80px 5%; }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+            max-width: 1150px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.01), rgba(255, 255, 255, 0.04));
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 40px 25px;
+            border-radius: 20px;
+            text-align: center;
+            transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            border-color: rgba(0, 242, 254, 0.4);
+            box-shadow: 0 10px 25px rgba(0, 242, 254, 0.1);
+        }
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 20px;
+            display: block;
+        }
+        .service-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 12px;
             color: #fff;
         }
+        .service-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
+        }
 
-        .portfolio-grid {
+        /* 2. PROJECTS SECTION */
+        .projects-section {
+            padding: 80px 5%;
+            background: rgba(255, 255, 255, 0.01);
+        }
+        .projects-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 30px;
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
         }
-
-        .portfolio-card {
+        .project-card {
             background: #0f172a;
-            border: 1px solid rgba(0, 242, 254, 0.15);
-            padding: 30px;
+            border: 1px solid rgba(0, 242, 254, 0.1);
             border-radius: 20px;
-            text-align: left;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
-            transition: transform 0.3s;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            transition: border-color 0.3s;
         }
-
-        .portfolio-card:hover {
-            transform: translateY(-5px);
-            border-color: #00f2fe;
-        }
-
-        .portfolio-badge {
+        .project-card:hover { border-color: #00f2fe; }
+        .project-info { padding: 25px; }
+        .project-tag {
             display: inline-block;
             background: rgba(0, 242, 254, 0.1);
             color: #00f2fe;
@@ -209,98 +239,62 @@
             font-weight: 600;
             margin-bottom: 15px;
         }
+        .project-info h3 { font-size: 1.4rem; color: #fff; margin-bottom: 10px; }
+        .project-info p { color: #94a3b8; font-size: 0.95rem; }
 
-        .portfolio-card h3 {
-            font-size: 1.3rem;
-            color: #fff;
-            margin-bottom: 10px;
-        }
-
-        .portfolio-card p {
-            color: #94a3b8;
-            font-size: 0.95rem;
-        }
-
-        .services-section {
-            padding: 60px 5%;
-            text-align: center;
-        }
-
-        .services-section h2 {
-            font-size: 2.3rem;
-            margin-bottom: 45px;
-        }
-
-        .services-grid {
+        /* 3. TESTIMONIALS SECTION */
+        .testimonials-section { padding: 80px 5%; }
+        .testimonials-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 25px;
-            max-width: 1150px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            max-width: 1000px;
             margin: 0 auto;
         }
-
-        .service-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.05));
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            padding: 30px 20px;
-            border-radius: 20px;
-            transition: transform 0.3s, border-color 0.3s;
+        .testimonial-card {
+            background: rgba(255, 255, 255, 0.02);
+            border-left: 4px solid #00f2fe;
+            padding: 30px;
+            border-radius: 0 20px 20px 0;
+            position: relative;
         }
-
-        .service-card:hover {
-            transform: translateY(-5px);
-            border-color: rgba(0, 242, 254, 0.5);
+        .quote-icon {
+            font-size: 2rem;
+            color: rgba(0, 242, 254, 0.2);
+            position: absolute;
+            top: 15px; right: 20px;
         }
-
-        .service-icon {
-            font-size: 2.5rem;
+        .testimonial-card p {
+            font-style: italic;
+            color: #e2e8f0;
             margin-bottom: 15px;
-            display: block;
+            font-size: 1rem;
         }
-
-        .service-card h3 {
-            font-size: 1.2rem;
-            color: #f8fafc;
+        .client-name {
+            font-weight: 600;
+            color: #00f2fe;
+            font-size: 0.95rem;
         }
+        .client-role { color: #64748b; font-size: 0.85rem; }
 
+        /* CONTACT & BUTTONS */
         .contact-section {
-            padding: 60px 5%;
+            padding: 80px 5%;
             text-align: center;
             background: rgba(255, 255, 255, 0.02);
-            border-top: 1px solid rgba(0, 242, 254, 0.1);
         }
-
-        .contact-section h2 {
-            font-size: 2.3rem;
-            margin-bottom: 30px;
-            color: #00f2fe;
-        }
-
         .contact-info {
-            max-width: 500px;
+            max-width: 550px;
             margin: 0 auto;
             background: #111827;
-            padding: 30px;
-            border-radius: 20px;
-            box-shadow: 0 0 20px rgba(0, 242, 254, 0.1);
+            padding: 40px 30px;
+            border-radius: 24px;
+            box-shadow: 0 0 25px rgba(0, 242, 254, 0.15);
         }
-
-        .contact-info p {
-            font-size: 1.05rem;
-            margin-bottom: 15px;
-            color: #e2e8f0;
-        }
-
-        .contact-info a {
-            color: #00f2fe;
-            text-decoration: none;
-            font-weight: 600;
-        }
-
         .btn {
             display: inline-block;
-            padding: 12px 35px;
-            font-size: 0.95rem;
+            padding: 13px 35px;
+            font-size: 1rem;
             font-weight: 600;
             color: #080c14;
             background: linear-gradient(45deg, #00f2fe, #4facfe);
@@ -310,56 +304,83 @@
             box-shadow: 0 4px 15px rgba(0, 242, 254, 0.3);
             transition: transform 0.3s;
         }
-
-        .btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 6px 20px rgba(0, 242, 254, 0.5);
-        }
-
+        .btn:hover { transform: translateY(-3px); }
         .whatsapp-btn {
             display: inline-block;
             background: #25D366;
             color: white;
-            padding: 12px 30px;
+            padding: 14px 30px;
             border-radius: 30px;
             text-decoration: none;
             font-size: 16px;
             font-weight: bold;
-            margin-top: 15px;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+            margin-top: 20px;
+            box-shadow: 0 5px 20px rgba(37, 211, 102, 0.3);
             transition: transform 0.3s;
         }
-
-        .whatsapp-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.5);
-            color: white;
-        }
+        .whatsapp-btn:hover { transform: translateY(-2px); color: white; }
 
         .divider {
             height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.15), transparent);
-            margin: 20px auto;
+            background: linear-gradient(90deg, transparent, rgba(0, 242, 254, 0.2), transparent);
+            margin: 10px auto;
             width: 85%;
         }
 
+        /* 4. FOOTER SECTION */
         footer {
-            text-align: center;
-            padding: 25px 20px;
             background-color: #05080f;
-            color: #64748b;
-            font-size: 0.9rem;
+            padding: 50px 5% 20px;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .footer-col h4 {
+            color: #fff;
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+        .footer-col p { color: #64748b; font-size: 0.9rem; }
+        .footer-links { list-style: none; }
+        .footer-links li { margin-bottom: 10px; }
+        .footer-links li a {
+            color: #64748b;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+        .footer-links li a:hover { color: #00f2fe; }
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: #475569;
+            font-size: 0.85rem;
         }
 
         @media (max-width: 768px) {
             header { flex-direction: column; gap: 15px; padding: 20px 2%; }
             nav ul li { margin: 0 10px; }
             .animated-title { font-size: 2.2rem; }
+            .footer-grid { text-align: center; }
         }
     </style>
 </head>
 <body>
+
+    <!-- 5. LOADING ANIMATION BOX -->
+    <div id="loader">
+        <div class="spinner"></div>
+        <p>OmVantage AI Loading...</p>
+    </div>
 
     <!-- Navbar -->
     <header>
@@ -370,9 +391,9 @@
         <nav>
             <ul>
                 <li><a href="#home">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#portfolio">Our Work</a></li>
                 <li><a href="#services">Services</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -380,41 +401,81 @@
 
     <!-- Hero Section -->
     <section class="hero" id="home">
-        <h1 class="animated-title">Welcome to <br><span class="typing-text">OmVantage AI</span></h1>
-        <p>हम आपके बिजनेस को डिजिटल और ऑटोमैटिक बनाने के लिए ऐप्स, ऑटोमेशन टूल्स और मॉडर्न वेबसाइट्स बनाते हैं।</p>
-        <button class="btn" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Get Started</button>
+        <h1 class="animated-title" data-aos="fade-up">Welcome to <br><span class="typing-text">OmVantage AI</span></h1>
+        <p data-aos="fade-up" data-aos-delay="200">हम आपके बिजनेस को स्मार्ट और ऑटोमैटिक बनाने के लिए कस्टम ऐप्स, सोशल मीडिया ऑटोमेशन टूल्स और रिस्पॉन्सिव वेबसाइट्स तैयार करते हैं।</p>
+        <button class="btn" data-aos="fade-up" data-aos-delay="400" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'});">Consult Us Free</button>
     </section>
 
     <div class="divider"></div>
 
-    <!-- About Section -->
-    <section class="about-section" id="about">
-        <h2>About Us</h2>
-        <div class="about-content">
-            <p>नमस्ते, मैं हूँ <span>Omprakash Ahirwar</span>।</p>
-            <p>मैं एक स्वतंत्र डेवलपर हूँ जो आपके रोज़मर्रा के बिज़नेस टास्क और सोशल मीडिया को AI तथा सॉफ्टवेयर की मदद से ऑटोमैटिक करने में माहिर हूँ।</p>
+    <!-- 1. DETAILED SERVICES SECTION -->
+    <section class="services-section" id="services">
+        <h2 class="section-title" data-aos="fade-up">Our Expert Services</h2>
+        <div class="services-grid">
+            
+            <!-- Card 1: AI Apps -->
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="100">
+                <span class="service-icon">🧠</span>
+                <h3>AI Applications</h3>
+                <p>स्मार्ट चैटबॉट्स और डेटा प्रोसेसिंग सिस्टम जो एआई की मदद से आपके बिजनेस के कठिन काम खुद संभाल सकते हैं।</p>
+            </div>
+
+            <!-- Card 2: Website Development -->
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="200">
+                <span class="service-icon">💻</span>
+                <h3>Modern Websites</h3>
+                <p>दुकानों, कंपनियों और गारमेंट स्टोर्स के लिए अल्ट्रा-फास्ट और मोबाइल-फ्रेंडली प्रोफेशनल वेबसाइट डिज़ाइन।</p>
+            </div>
+
+            <!-- Card 3: Android Apps -->
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="300">
+                <span class="service-icon">📱</span>
+                <h3>Android Apps</h3>
+                <p>आपकी आवश्यकतानुसार कस्टम एंड्रॉयड बिलिंग टूल्स, यूटिलिटी ऐप्स और डेटा मैनेजमेंट सॉफ्टवेयर की कोडिंग।</p>
+            </div>
+
+            <!-- Card 4: Game Development -->
+            <div class="service-card" data-aos="zoom-in" data-aos-delay="400">
+                <span class="service-icon">🎮</span>
+                <h3>Game Development</h3>
+                <p>मजेदार 2D गेम्स और इंटरैक्टिव यूजर इंटरफेस, जो आपके ब्रांड की एंगेजमेंट को सोशल मीडिया पर कई गुना बढ़ा देते हैं।</p>
+            </div>
+
         </div>
     </section>
 
     <div class="divider"></div>
 
-    <!-- Portfolio Section -->
-    <section class="portfolio-section" id="portfolio">
-        <h2>Our Live Projects (पोर्टफोलियो)</h2>
-        <div class="portfolio-grid">
+    <!-- 2. LIVE PROJECTS SECTION -->
+    <section class="projects-section" id="projects">
+        <h2 class="section-title" data-aos="fade-up">Our Live Projects</h2>
+        <div class="projects-grid">
             
             <!-- Project 1 -->
-            <div class="portfolio-card">
-                <span class="portfolio-badge">Android App & Billing</span>
-                <h3>Smart Bill Custom App</h3>
-                <p>रिटेल गारमेंट्स और कपड़े की दुकानों के लिए एक कस्टम डिजिटल बिलिंग कैलकुलेटर ऐप, जो बिना किसी झंझट के तुरंत सटीक बिल जनरेट करता है और मैन्युअल काम को पूरी तरह ख़त्म करता है।</p>
+            <div class="project-card" data-aos="fade-right">
+                <div class="project-info">
+                    <span class="project-tag">Android App & Retail</span>
+                    <h3>Smart Bill Custom App (v3)</h3>
+                    <p>गारमेंट रिटेलर्स के लिए विशेष रूप से डिज़ाइन किया गया एक बिलिंग सॉफ्टवेयर। यह मोबाइल पर तुरंत सटीक बिल जेनरेट करता है और स्टॉक रिकॉर्ड्स को आसान बनाता है।</p>
+                </div>
             </div>
 
             <!-- Project 2 -->
-            <div class="portfolio-card">
-                <span class="portfolio-badge">Social Media Automation</span>
-                <h3>FB & Insta Auto-Responder</h3>
-                <p>फेसबुक मैसेंजर और इंस्टाग्राम पर आने वाली लीड्स को ऑटोमैटिक कस्टमाइज्ड रिप्लाई भेजने और सीधे WhatsApp पर सिंक करने का एडवांस ऑटोमेशन सिस्टम, जो ग्राहकों को 24/7 तुरंत जवाब देता है।</p>
+            <div class="project-card" data-aos="fade-left">
+                <div class="project-info">
+                    <span class="project-tag">Social Media Automation</span>
+                    <h3>FB & Insta Lead Auto-Responder</h3>
+                    <p>सोशल मीडिया पर 24/7 एक्टिव रहने वाला ऑटोमेशन सिस्टम। कस्टमर का मैसेज आते ही यह सिस्टम ऑटो-रिप्लाई करके ग्राहकों को सीधे आपके आधिकारिक WhatsApp से सिंक कर देता है।</p>
+                </div>
+            </div>
+
+            <!-- Project 3: Future Template for Client -->
+            <div class="project-card" data-aos="fade-right" data-aos-delay="100">
+                <div class="project-info">
+                    <span class="project-tag">Game & Entertainment</span>
+                    <h3>Custom 2D Panda Game</h3>
+                    <p>एक मजेदार, रिस्पॉन्सिव मोबाइल गेम जिसे यूजर इंगेजमेंट बढ़ाने के लिए कस्टमाइज्ड यूआई और आसान कंट्रोल मैकेनिज्म के साथ तैयार किया गया है।</p>
+                </div>
             </div>
 
         </div>
@@ -422,26 +483,25 @@
 
     <div class="divider"></div>
 
-    <!-- Services Section -->
-    <section class="services-section" id="services">
-        <h2>Our Services</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <span class="service-icon">🤖</span>
-                <h3>Social Automation</h3>
+    <!-- 3. TESTIMONIALS SECTION -->
+    <section class="testimonials-section" id="testimonials">
+        <h2 class="section-title" data-aos="fade-up">What Our Clients Say</h2>
+        <div class="testimonials-grid">
+            
+            <div class="testimonial-card" data-aos="flip-left">
+                <span class="quote-icon">“</span>
+                <p>"OmVantage AI द्वारा बनाया गया ऑटोमेशन टूल हमारे फेसबुक पेज के लिए बेहतरीन काम कर रहा है। अब ग्राहकों को तुरंत जवाब मिल जाता है और हमारे पास सीधे व्हाट्सएप पर लीड्स आ जाती हैं।"</p>
+                <div class="client-name">Piyush Garments</div>
+                <div class="client-role">Retail Store Owner</div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">📊</span>
-                <h3>Custom Billing Apps</h3>
+
+            <div class="testimonial-card" data-aos="flip-left" data-aos-delay="100">
+                <span class="quote-icon">“</span>
+                <p>"इन्होंने हमारे काम को आसान बनाने के लिए एक कस्टम बिलिंग ऐप तैयार किया। कोडिंग और फीचर्स कमाल के हैं, जिससे हमारा मैन्युअल समय बहुत बचता है।"</p>
+                <div class="client-name">Tech Store Client</div>
+                <div class="client-role">Business Manager</div>
             </div>
-            <div class="service-card">
-                <span class="service-icon">💻</span>
-                <h3>Business Websites</h3>
-            </div>
-            <div class="service-card">
-                <span class="service-icon">📱</span>
-                <h3>Android Tools</h3>
-            </div>
+
         </div>
     </section>
 
@@ -449,24 +509,64 @@
 
     <!-- Contact Section -->
     <section class="contact-section" id="contact">
-        <h2>Contact Us</h2>
-        <div class="contact-info">
-            <p>क्या आप भी अपने बिजनेस को ऑनलाइन और ऑटोमैटिक बनाना चाहते हैं? हमसे अभी बात करें।</p>
-            <p>📞 Mobile: <a href="tel:+918878906237">+91 8878906237</a></p>
-            <p>📧 Email: <a href="mailto:omahirwar81@gmail.com">omahirwar81@gmail.com</a></p>
-            <p>📍 Location: Makhan Nagar, Madhya Pradesh, India</p>
+        <h2 class="section-title" data-aos="fade-up">Let's Work Together</h2>
+        <div class="contact-info" data-aos="zoom-in">
+            <p>क्या आप भी अपने व्यापार को ऑनलाइन ले जाकर ऑटोमैटिक बनाना चाहते हैं? हमसे तुरंत संपर्क करें और अपनी आवश्यकता बताएं।</p>
+            <p style="margin-top: 15px;">📞 Mobile: <a href="tel:+918878906237" style="color:#00f2fe;">+91 8878906237</a></p>
+            <p>📧 Email: <a href="mailto:omahirwar81@gmail.com" style="color:#00f2fe;">omahirwar81@gmail.com</a></p>
+            <p>📍 Location: Makhan Nagar, MP, India</p>
             
-            <!-- WhatsApp Chat Button -->
-            <a href="https://wa.me/918878906237?text=Hello%20OmVantage%20AI,%20I%20want%20to%20know%20more%20about%20your%20services." class="whatsapp-btn" target="_blank">
-                💬 Chat on WhatsApp
+            <!-- WhatsApp Button -->
+            <a href="https://wa.me/918878906237?text=Hello%20OmVantage%20AI,%20I%20checked%20your%20website%20and%20want%20to%20discuss%20a%20project." class="whatsapp-btn" target="_blank">
+                💬 Connect on WhatsApp
             </a>
         </div>
     </section>
 
-    <!-- Footer -->
+    <!-- 4. FOOTER & QUICK LINKS -->
     <footer>
-        <p>© 2026 OmVantage AI. All Rights Reserved.</p>
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h4>OmVantage AI</h4>
+                <p>हमारा लक्ष्य स्थानीय और बड़े व्यवसायों को एडवांस सॉफ्टवेयर और एआई टूल्स की मदद से डिजिटल रूप से सशक्त बनाना है।</p>
+            </div>
+            <div class="footer-col">
+                <h4>Quick Links</h4>
+                <ul class="footer-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-col">
+                <h4>Our Expertise</h4>
+                <p style="font-size: 0.85rem; color: #64748b;">• Android Custom Coding<br>• Lead Generation Tools<br>• Business Automation</p>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>© 2026 OmVantage AI. All Rights Reserved. Designed by Omprakash.</p>
+        </div>
     </footer>
+
+    <!-- 6. SCROLL ANIMATION SCRIPT (AOS) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize Scroll Animations
+        AOS.init({
+            duration: 800,
+            once: true
+        });
+
+        // Hide Loading Animation once page loads fully
+        window.addEventListener('load', () => {
+            const loader = document.getElementById('loader');
+            loader.style.opacity = '0';
+            setTimeout(() => {
+                loader.style.display = 'none';
+            }, 500);
+        });
+    </script>
 
 </body>
 </html>
