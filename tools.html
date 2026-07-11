@@ -5,11 +5,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Omvantage AI - Smart Billing</title>
     <style>
-        body { font-family: Arial, sans-serif; padding: 20px; background-color: #f4f4f4; }
-        .box { background: white; padding: 20px; border-radius: 8px; box-shadow: 0px 0px 10px rgba(0,0,0,0.1); }
-        input, button { width: 100%; padding: 10px; margin: 10px 0; border-radius: 4px; border: 1px solid #ccc; box-sizing: border-box; }
-        button { background-color: #25D366; color: white; font-weight: bold; cursor: pointer; border: none; }
-        #output { background: #eee; padding: 10px; margin-top: 20px; white-space: pre-wrap; border-radius: 4px; font-weight: bold; }
+        body { font-family: sans-serif; display: flex; justify-content: center; padding: 20px; background: #f4f4f4; }
+        .box { background: white; padding: 20px; border-radius: 10px; width: 100%; max-width: 400px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h2 { text-align: center; margin-bottom: 20px; }
+        label { display: block; margin-top: 10px; font-weight: bold; }
+        input { width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px; box-sizing: border-box; }
+        button { width: 100%; padding: 15px; margin-top: 20px; background: #25D366; color: white; border: none; border-radius: 5px; font-size: 16px; font-weight: bold; cursor: pointer; }
+        #output { display: none; background: #eee; padding: 15px; margin-top: 20px; white-space: pre-wrap; border-radius: 5px; border-left: 5px solid #25D366; }
     </style>
 </head>
 <body>
@@ -21,21 +23,18 @@
     <input type="text" id="custName" placeholder="जैसे: राशी">
     
     <label>सामान का नाम:</label>
-    <input type="text" id="itemName" placeholder="जैसे: Premium Jeans">
+    <input type="text" id="itemName" placeholder="जैसे: Shirt">
     
     <label>मूल्य (₹):</label>
-    <input type="number" id="amount" placeholder="जैसे: 1000">
+    <input type="number" id="amount" placeholder="जैसे: 500">
     
-    <button onclick="sendToWhatsApp()" style="width: 100%; padding: 14px; background: #25D366; color: white; font-weight: bold; font-size: 1rem; border: none; border-radius: 50px; cursor: pointer;">
-    बिल बनाएं और WhatsApp पर भेजें
-</button>
-
+    <button onclick="processBill()">बिल बनाएं और WhatsApp पर भेजें</button>
     
-    <div id="output" style="display:none;"></div>
+    <div id="output"></div>
 </div>
 
 <script>
-function generateInvoice() {
+function processBill() {
     let name = document.getElementById('custName').value;
     let item = document.getElementById('itemName').value;
     let amt = parseFloat(document.getElementById('amount').value);
@@ -45,60 +44,24 @@ function generateInvoice() {
         return;
     }
     
-    let total = (amt * 1.18).toFixed(2); // 18% GST के साथ
+    let total = (amt * 1.18).toFixed(2);
     
     let message = `--- Omvantage AI Smart Invoice ---\n`;
     message += `ग्राहक का नाम: ${name}\n`;
     message += `कपड़ा/सामान: ${item}\n`;
     message += `कुल राशि (GST सहित): ₹${total}\n\n`;
-    message += `पीयूष गारमेंट्स में खरीदारी के लिए धन्यवाद!\n`;
-    message += `अगली बार नए कलेक्शन के ऑफर्स सीधे आपके व्हाट्सएप पर मिलेंगे।\n`;
-    message += `----------------------------------`;
+    message += `पीयूष गारमेंट्स में खरीदारी के लिए धन्यवाद! 🙏`;
     
-    let outputDiv = document.getElementById('output');
-    outputDiv.style.display = "block";
-    outputDiv.innerText = message;
-}
-<script>
-() {
-    let name = document.getElementById('custName').value;
-function sendToWhatsApp()    let item = document.getElementById('itemName').value;
-    let amt = parseFloat(document.getElementById('amount').value);
-    
-    if(!name || !item || isNaN(amt)) {
-        alert("कृपया सभी जानकारी सही से भरें!");
-        return;
-    }
-    
-    let total = (amt * 1.18).toFixed(2);
-    
-    // व्हाट्सएप के लिए सुंदर मैसेज फॉर्मेटिंग
-    let message = `*--- Omvantage AI Smart Invoice ---*\n\n`;
-    message += `*ग्राहक का नाम:* ${name}\n`;
-    message += `*कपड़ा/सामान:* ${item}\n`;
-    message += `*कुल राशि (GST सहित):* ₹${total}\n\n`;
-    message += `पीयूष गारमेंट्स में खरीदारी के लिए धन्यवाद! 🙏\n`;
-    message += `अगली बार नए कलेक्शन के ऑफर्स सीधे आपके व्हाट्सएप पर मिलेंगे।\n`;
-    message += `----------------------------------`;
-    
-    // स्क्रीन पर मैसेज दिखाने के लिए
+    // 1. स्क्रीन पर बिल दिखाएं
     let outputDiv = document.getElementById('output');
     outputDiv.style.display = "block";
     outputDiv.innerText = message;
     
-    // व्हाट्सएप पर भेजने के लिए टेक्स्ट को यूआरएल फॉर्मेट में बदलना (Encode)
-    let whatsappText = encodeURIComponent(message);
-    
-    // ग्राहक का व्हाट्सएप सीधे खोलने के लिए लिंक (बिना नंबर सेव किए भेजने के लिए)
-    let whatsappUrl = `https://api.whatsapp.com/send?text=${whatsappText}`;
-    
-    // 1 सेकंड के बाद सीधे व्हाट्सएप ऐप को खोल देना
-    setTimeout(() => {
-        window.open(whatsappUrl, '_blank');
-    }, 1000);
+    // 2. व्हाट्सएप लिंक बनाएं और खोलें
+    let whatsappUrl = "https://wa.me/?text=" + encodeURIComponent(message);
+    window.location.href = whatsappUrl;
 }
 </script>
-
 
 </body>
 </html>
