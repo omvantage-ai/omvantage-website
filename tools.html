@@ -56,7 +56,46 @@ function generateInvoice() {
     outputDiv.style.display = "block";
     outputDiv.innerText = message;
 }
+<script>
+function generateInvoice() {
+    let name = document.getElementById('custName').value;
+    let item = document.getElementById('itemName').value;
+    let amt = parseFloat(document.getElementById('amount').value);
+    
+    if(!name || !item || isNaN(amt)) {
+        alert("कृपया सभी जानकारी सही से भरें!");
+        return;
+    }
+    
+    let total = (amt * 1.18).toFixed(2);
+    
+    // व्हाट्सएप के लिए सुंदर मैसेज फॉर्मेटिंग
+    let message = `*--- Omvantage AI Smart Invoice ---*\n\n`;
+    message += `*ग्राहक का नाम:* ${name}\n`;
+    message += `*कपड़ा/सामान:* ${item}\n`;
+    message += `*कुल राशि (GST सहित):* ₹${total}\n\n`;
+    message += `पीयूष गारमेंट्स में खरीदारी के लिए धन्यवाद! 🙏\n`;
+    message += `अगली बार नए कलेक्शन के ऑफर्स सीधे आपके व्हाट्सएप पर मिलेंगे।\n`;
+    message += `----------------------------------`;
+    
+    // स्क्रीन पर मैसेज दिखाने के लिए
+    let outputDiv = document.getElementById('output');
+    outputDiv.style.display = "block";
+    outputDiv.innerText = message;
+    
+    // व्हाट्सएप पर भेजने के लिए टेक्स्ट को यूआरएल फॉर्मेट में बदलना (Encode)
+    let whatsappText = encodeURIComponent(message);
+    
+    // ग्राहक का व्हाट्सएप सीधे खोलने के लिए लिंक (बिना नंबर सेव किए भेजने के लिए)
+    let whatsappUrl = `https://api.whatsapp.com/send?text=${whatsappText}`;
+    
+    // 1 सेकंड के बाद सीधे व्हाट्सएप ऐप को खोल देना
+    setTimeout(() => {
+        window.open(whatsappUrl, '_blank');
+    }, 1000);
+}
 </script>
+
 
 </body>
 </html>
