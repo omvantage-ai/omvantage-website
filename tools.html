@@ -26,7 +26,10 @@
     <label>मूल्य (₹):</label>
     <input type="number" id="amount" placeholder="जैसे: 1000">
     
-    <button onclick="generateInvoice()">बिल बनाएं और व्हाट्सएप मैसेज तैयार करें</button>
+    <button onclick="sendToWhatsApp()" style="width: 100%; padding: 14px; background: #25D366; color: white; font-weight: bold; font-size: 1rem; border: none; border-radius: 50px; cursor: pointer;">
+    बिल बनाएं और WhatsApp पर भेजें
+</button>
+
     
     <div id="output" style="display:none;"></div>
 </div>
@@ -57,9 +60,9 @@ function generateInvoice() {
     outputDiv.innerText = message;
 }
 <script>
-function generateInvoice() {
+() {
     let name = document.getElementById('custName').value;
-    let item = document.getElementById('itemName').value;
+function sendToWhatsApp()    let item = document.getElementById('itemName').value;
     let amt = parseFloat(document.getElementById('amount').value);
     
     if(!name || !item || isNaN(amt)) {
